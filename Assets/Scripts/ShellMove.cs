@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShellMove : MonoBehaviour
 {
+    float speed = 1;
+
     // Update is called once per frame
     void Update()
     {
-        this.Transform.Translated (0, 0, Time.deltaTime);
+        this.transform.Translate (0, (speed * Time.deltaTime)/2.0f, speed * Time.deltaTime);
     }
 }
