@@ -7,7 +7,7 @@ public class FollowPath : MonoBehaviour
     Transform goal;
     float speed = 5.0f;
     float accuracy = 1.0f;
-    float rotSpeed = 2.0f;
+    float rotSpeed = 5.0f;
     public GameObject wpManager;
     GameObject[] wps;
     GameObject currentNode;
@@ -33,6 +33,12 @@ public class FollowPath : MonoBehaviour
         currentWP = 0;
     }
 
+    public void GoToTanks()
+    {
+        g.AStar(currentNode, wps[4]);
+        currentWP = 0;
+    }
+
     void LateUpdate()
     {
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
@@ -52,6 +58,8 @@ public class FollowPath : MonoBehaviour
             Vector3 direction = lookAtGoal - this.transform.position;
 
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotSpeed);
+
+            this.transform.Translate(0, 0, speed * Time.deltaTime);
         }
     }
 }
