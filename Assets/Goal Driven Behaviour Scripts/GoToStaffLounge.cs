@@ -11,6 +11,7 @@ public class GoToStaffLounge : GAction
 
     public override bool PostPerform()
     {
+        GWorld.Instance.GetWorld().ModifyState("InLounge", 1);
         return true;
     }
 }
