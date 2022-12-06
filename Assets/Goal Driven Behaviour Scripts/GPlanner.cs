@@ -17,11 +17,27 @@ public class Noder
         this.state = new Dictionary<string, int>(allstates);
         this.action = action;
     }
+
+    public Noder(Noder parent, float cost, Dictionary<string, int> allstates, Dictionary<string, int> beliefstates, GAction action)
+    {
+        this.parent = parent;
+        this.cost = cost;
+        this.state = new Dictionary<string, int>(allstates);
+        foreach(KeyValuePair<string, int> b in beliefstates)
+        {
+            if (!this.state.ContainsKey(b.Key))
+            {
+                this.state.Add(b.Key, b.Value);
+            }
+        }
+
+        this.action = action;
+    }
 }
 
 public class GPlanner
 {
-   public Queue<GAction> plan(List<GAction> actions, Dictionary<string, int> goal, WorldStates states)
+   public Queue<GAction> plan(List<GAction> actions, Dictionary<string, int> goal, WorldStates beliefstates)
     {
         List<GAction> usableActions = new List<GAction>();
         foreach(GAction a in actions)
@@ -33,7 +49,7 @@ public class GPlanner
         }
 
         List<Noder> leaves = new List<Noder>();
-        Noder start = new Noder(null, 0, GWorld.Instance.GetWorld().GetStates(), null);
+        Noder start = new Noder(null, 0, GWorld.Instance.GetWorld().GetStates(), beliefstates.GetStates(), null);
 
         bool success = BuildGraph(start, leaves, usableActions, goal);
 
@@ -101,17 +117,17 @@ public class GPlanner
                     }
                 }
 
-                Noder node = new Noder(parent, parent.cost + action.cost, currentState, action);
+                Noder noder = new Noder(parent, parent.cost + action.cost, currentState, action);
 
                 if(GoalAchieved(goal, currentState))
                 {
-                    leaves.Add(node);
+                    leaves.Add(noder);
                     foundPath = true;
                 }
                 else
                 {
                     List<GAction> subset = ActionSubset(usuableActions, action);
-                    bool found = BuildGraph(node, leaves, subset, goal);
+                    bool found = BuildGraph(noder, leaves, subset, goal);
                     if(found)
                     {
                         foundPath = true;

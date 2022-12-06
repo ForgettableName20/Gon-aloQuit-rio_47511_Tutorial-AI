@@ -52,7 +52,7 @@ public sealed class GWorld
     public GameObject RemoveCubicle()
     {
         if (cubicles.Count == 0) return null;
-        return patients.Dequeue();
+        return cubicles.Dequeue();
     }
 
     public static GWorld Instance

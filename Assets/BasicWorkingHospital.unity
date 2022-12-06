@@ -4389,7 +4389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 177407082141715887, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.587
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 177407082141715887, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4482,7 +4482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d024308267985284597f4aa06bfdb6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Action
+  actionName: GetPatient
   cost: 1
   target: {fileID: 0}
   targetTag: 
@@ -4495,7 +4495,7 @@ MonoBehaviour:
   afterEffects:
   - key: treatPatient
     value: 0
-  agent: {fileID: 0}
+  agent: {fileID: 2129082500}
   running: 0
 --- !u!1 &2146182846
 GameObject:
