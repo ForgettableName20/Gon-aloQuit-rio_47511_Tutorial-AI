@@ -4484,7 +4484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Action
   cost: 1
-  target: {fileID: 1000317771}
+  target: {fileID: 0}
   targetTag: 
   duration: 0
   preConditions:
