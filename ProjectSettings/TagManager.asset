@@ -6,6 +6,14 @@ TagManager:
   tags:
   - tank
   - goal
+  - wp
+  - Lounge
+  - WaitingArea
+  - Home
+  - Door
+  - Cubicle
+  - Reception
+  - RegisterArea
   layers:
   - Default
   - TransparentFX
