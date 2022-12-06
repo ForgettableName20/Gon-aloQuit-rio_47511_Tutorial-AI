@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Node
+public class Noder
 {
-    public Node parent;
+    public Noder parent;
     public float cost;
     public Dictionary<string, int> state;
     public GAction action;
 
-    public Node(Node parent, float cost, Dictionary<string, int> allstates, GAction action)
+    public Noder(Noder parent, float cost, Dictionary<string, int> allstates, GAction action)
     {
         this.parent = parent;
         this.cost = cost;
@@ -32,8 +32,8 @@ public class GPlanner
             }
         }
 
-        List<Node> leaves = new List<Node>();
-        Node start = new Node(null, 0, GWorld.Instance.GetWorld().GetStates(), null);
+        List<Noder> leaves = new List<Noder>();
+        Noder start = new Noder(null, 0, GWorld.Instance.GetWorld().GetStates(), null);
 
         bool success = BuildGraph(start, leaves, usableActions, goal);
 
@@ -43,8 +43,8 @@ public class GPlanner
             return null;
         }
 
-        Node cheapest = null;
-        foreach(Node leaf in leaves)
+        Noder cheapest = null;
+        foreach(Noder leaf in leaves)
         {
             if(cheapest == null)
             {
@@ -60,7 +60,7 @@ public class GPlanner
         }
 
         List<GAction> result = new List<GAction>();
-        Node n = cheapest;
+        Noder n = cheapest;
         while (n != null)
         {
             if (n.action != null)
@@ -85,7 +85,7 @@ public class GPlanner
         return queue;
     }
 
-    private bool BuildGraph(Node parent, List<Node> leaves, List<GAction> usuableActions, Dictionary<string, int>goal)
+    private bool BuildGraph(Noder parent, List<Noder> leaves, List<GAction> usuableActions, Dictionary<string, int>goal)
     {
         bool foundPath = false;
         foreach(GAction action in usuableActions)
@@ -101,7 +101,7 @@ public class GPlanner
                     }
                 }
 
-                Node node = new Node(parent, parent.cost + action.cost, currentState, action);
+                Noder node = new Noder(parent, parent.cost + action.cost, currentState, action);
 
                 if(GoalAchieved(goal, currentState))
                 {
@@ -110,7 +110,7 @@ public class GPlanner
                 }
                 else
                 {
-                    List<GAction> subset = ActionSubset(usuableActions, usuableActions, action);
+                    List<GAction> subset = ActionSubset(usuableActions, action);
                     bool found = BuildGraph(node, leaves, subset, goal);
                     if(found)
                     {
