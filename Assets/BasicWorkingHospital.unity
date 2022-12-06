@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patientPrefab: {fileID: 7881807149238628900, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
-  numPatients: 5
+  numPatients: 1
   janitorPrefab: {fileID: 7881807149238628900, guid: ff7b951a55559704dad51d5f2a47199e, type: 3}
   numJanitors: 2
 --- !u!1 &1034050901
@@ -4493,9 +4493,34 @@ MonoBehaviour:
   - key: FreeCubicle
     value: 0
   afterEffects:
-  - key: treatPatient
+  - key: patientPickedup
     value: 0
   agent: {fileID: 2129082500}
+  running: 0
+--- !u!114 &2129082504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129082499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d5eabfe491e5548bd154fa4b9fc620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Action
+  cost: 1
+  target: {fileID: 0}
+  targetTag: 
+  duration: 0
+  preConditions:
+  - key: patientPickedup
+    value: 0
+  afterEffects:
+  - key: treatPatient
+    value: 0
+  agent: {fileID: 0}
   running: 0
 --- !u!1 &2146182846
 GameObject:

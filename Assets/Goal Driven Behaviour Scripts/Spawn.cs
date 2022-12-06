@@ -23,8 +23,8 @@ public class Spawn : MonoBehaviour
             Instantiate(janitorPrefab, this.transform.position, Quaternion.identity);
         }
 
-        Invoke("SpawnPatient", 5);
-        Invoke("SpawnJanitors", 5);
+        Invoke("SpawnPatient", 1);
+        Invoke("SpawnJanitors", 1);
     }
 
     void SpawnPatient()
